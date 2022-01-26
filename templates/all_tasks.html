@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <title>All Tasks</title>
+</head>
+<body>
+    <div class="w-1/2 mx-auto p-6">
+        <div class="w-full border-b-2 border-grey-500 pb-[10px]">    
+            <h2 class="text-3xl font-bold text-center pb-[20px]">Pending Tasks:-</h2>
+            {% if pending_tasks %}
+                {% for task in pending_tasks %}
+                <p class="text-xl pl-[50px]">{{forloop.counter}}. {{task}} <span class="text-lg text-slate-400">{{task.created_date}}</span> <a class="text-lg px-2 ml-2 text-blue-500 border-blue-500 hover:border-b-2" href="/complete_task/{{task.id}}">Mark Done</a> <a class="text-lg px-2 ml-2 text-blue-500 border-blue-500 hover:border-b-2" href="/delete-task/{{task.id}}">Delete Task</a></p>
+                {% endfor %}
+            {% else %}
+                <p class="text-xl text-center text-green-500">No pending tasks 🙂</p>
+            {% endif %}
+        </div>
+    
+        <div class="w-full">
+            <h2 class="text-3xl font-bold text-center py-[10px]">Completed Tasks:-</h2>
+            {% if completed_tasks %}
+                {% for task in completed_tasks %}
+                <p class="text-xl pl-[50px]">{{forloop.counter}}. {{task}}</p>
+                {% endfor %}
+            {% else %}
+                <p class="text-xl text-center text-rose-500">No completed tasks 😥</p>
+            {% endif %}
+        </div>
+
+        <a class="text-xl text-center text-blue-500 border-blue-500 px-2 block w-[160px] mx-auto mt-10 hover:border-b-2" href="/tasks">Add Some Task</a>
+
+    </div>
+
+</body>
+</html>
