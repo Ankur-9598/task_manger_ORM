@@ -23,7 +23,7 @@ def completed_tasks_view(request):
     return render(request, "completed_tasks.html", {"tasks": completed_tasks})
 
 def complete_task_view(request, task_id):
-    Task.objects.filter(id=task_id).update(completed=True)
+    Task.objects.filter(id=task_id, deleted=False).update(completed=True)
     return HttpResponseRedirect("/all_tasks")
 
 def delete_task_view(request, task_id):
